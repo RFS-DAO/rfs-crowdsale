@@ -29,7 +29,7 @@ contract RowhomesCrowdsale is Crowdsale, MintedCrowdsale, AllowanceCrowdsale, Ca
     }
 }
 
-contract RowhomeCrowdsaleDeployer {
+contract RowhomesCrowdsaleDeployer {
     constructor()
     public
     {
@@ -38,7 +38,7 @@ contract RowhomeCrowdsaleDeployer {
 
         // create the crowdsale and tell it about the token
         Crowdsale crowdsale = new RowhomesCrowdsale(
-            1,               // rate, still in TKNbits
+            1,               // rate ROWHOME per ETH
             msg.sender,      // send Ether to the deployer
             token,           // the token
             address(0x99E21A5982F3EB95883745a0B9A79873484Ed497),

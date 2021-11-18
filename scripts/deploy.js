@@ -14,8 +14,8 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const RowhomesCrowdsale = await hre.ethers.getContractFactory("RowhomesCrowdsale");
-  const sale = await RowhomesCrowdsale.deploy("Hello, Hardhat!");
+  const RowhomesCrowdsaleDeployer = await hre.ethers.getContractFactory("RowhomesCrowdsaleDeployer");
+  const sale = await RowhomesCrowdsaleDeployer.deploy();
 
   await sale.deployed();
 
