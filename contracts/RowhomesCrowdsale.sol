@@ -11,7 +11,7 @@ contract Rowhome is ERC20 {
     // ... see "Tokens" for more info
 }
 
-contract RowhomeCrowdsale is Crowdsale, MintedCrowdsale, AllowanceCrowdsale, CappedCrowdsale, WhitelistCrowdsale  {
+contract RowhomesCrowdsale is Crowdsale, MintedCrowdsale, AllowanceCrowdsale, CappedCrowdsale, WhitelistCrowdsale  {
     constructor(
         uint256 rate,
         address payable wallet,
@@ -37,7 +37,7 @@ contract RowhomeCrowdsaleDeployer {
         ERC20 token = new Rowhome();
 
         // create the crowdsale and tell it about the token
-        Crowdsale crowdsale = new RowhomeCrowdsale(
+        Crowdsale crowdsale = new RowhomesCrowdsale(
             1,               // rate, still in TKNbits
             msg.sender,      // send Ether to the deployer
             token,           // the token
