@@ -4,9 +4,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol";
 import "@openzeppelin/contracts/crowdsale/Crowdsale.sol";
 import "@openzeppelin/contracts/crowdsale/emission/MintedCrowdsale.sol";
-import "@openzeppelin/contracts/crowdsale/emission/AllowanceCrowdsale.sol";
 import "@openzeppelin/contracts/crowdsale/validation/CappedCrowdsale.sol";
-import "@openzeppelin/contracts/crowdsale/validation/WhitelistCrowdsale.sol";
 
 contract Rowhome is Context, ERC20, ERC20Detailed {
      /**
@@ -21,7 +19,7 @@ contract Rowhome is Context, ERC20, ERC20Detailed {
     }
 }
 
-contract RowhomesCrowdsale is Crowdsale, MintedCrowdsale, AllowanceCrowdsale, CappedCrowdsale, WhitelistCrowdsale  {
+contract RowhomesCrowdsale is Crowdsale, CappedCrowdsale {
     constructor(
         uint256 rate,
         address payable wallet,
@@ -30,8 +28,6 @@ contract RowhomesCrowdsale is Crowdsale, MintedCrowdsale, AllowanceCrowdsale, Ca
 	uint256 cap
     )
     CappedCrowdsale(cap)
-    MintedCrowdsale()
-    AllowanceCrowdsale(rfsMultiSignatureWallet)
     Crowdsale(rate, wallet, token)
     public
     {
@@ -56,7 +52,7 @@ contract RowhomesCrowdsaleDeployer {
         );
         // transfer the minter role from this contract (the default)
         // to the crowdsale, so it can mint tokens
-        // token.addMinter(address(crowdsale));
-	// token.renounceMinter();
+        rowhomeToken.transfer(address(crowdsale), 25000000000000000000000);
+	//rowhomeToken.renounceMinter();
     }
 }
