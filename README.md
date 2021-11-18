@@ -5,5 +5,5 @@ This repository holds the crowdsale contract for the Rowhome Floor Sweepers DAO,
 ## Deploy in Ropsten Testnet
 
 ```shell
-hardhat run --network ropsten scripts/deploy.js
+npx hardhat run --network ropsten scripts/deploy.js
 ```
