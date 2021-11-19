@@ -52,6 +52,6 @@ contract RFSCrowdsaleDeployer {
         rfsToken.transfer(address(crowdsale), 100000000000000000000);
 
 	// Transfer the remains to multisig
-        rfsToken.transfer(multisig, 2400000000000000000000);
+        rfsToken.transfer(multisig, 24900000000000000000000);
     }
 }
