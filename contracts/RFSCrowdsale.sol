@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/crowdsale/Crowdsale.sol";
 import "@openzeppelin/contracts/crowdsale/emission/MintedCrowdsale.sol";
 import "@openzeppelin/contracts/crowdsale/validation/CappedCrowdsale.sol";
 
-contract Rowhome is Context, ERC20, ERC20Detailed {
+contract RFS is Context, ERC20, ERC20Detailed {
      /**
      * @dev Constructor that gives _msgSender() all of existing tokens.
      */
@@ -19,7 +19,7 @@ contract Rowhome is Context, ERC20, ERC20Detailed {
     }
 }
 
-contract RowhomesCrowdsale is Crowdsale, CappedCrowdsale {
+contract RFSCrowdsale is Crowdsale, CappedCrowdsale {
     constructor(
         uint256 rate,
         address payable wallet,
@@ -35,24 +35,25 @@ contract RowhomesCrowdsale is Crowdsale, CappedCrowdsale {
     }
 }
 
-contract RowhomesCrowdsaleDeployer {
+contract RFSCrowdsaleDeployer {
     constructor()
     public
     {
-        // create a mintable token
-        ERC20 rowhomeToken = new Rowhome("ROWHOME", "ROWHOME", 25000000000000000000000);
+        ERC20 rfsToken = new RFS("RFS", "RFS", 25000000000000000000000);
+        address payable multisig = address(0x99E21A5982F3EB95883745a0B9A79873484Ed497);
 
-        // create the crowdsale and tell it about the token
-        Crowdsale crowdsale = new RowhomesCrowdsale(
-            1,               // rate ROWHOME per ETH
-            msg.sender,      // send Ether to the deployer
-            rowhomeToken,           // the token
-            address(0x99E21A5982F3EB95883745a0B9A79873484Ed497),
-	    25000000000000000000000
+        RFSCrowdsale crowdsale = new RFSCrowdsale(
+            1,               // rate RFS per ETH
+            multisig,      // send Ether to the deployer
+            rfsToken,           // the token
+	    multisig,
+	    1000000000000000000000
         );
-        // transfer the minter role from this contract (the default)
-        // to the crowdsale, so it can mint tokens
-        rowhomeToken.transfer(address(crowdsale), 25000000000000000000000);
-	//rowhomeToken.renounceMinter();
+
+	// Transfer RFS to the crowdsale
+        rfsToken.transfer(address(crowdsale), 100000000000000000000);
+
+	// Transfer the remains to multisignature
+        rfsToken.transfer(multisig, 2400000000000000000000);
     }
 }
