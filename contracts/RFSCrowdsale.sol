@@ -3,7 +3,6 @@ pragma solidity ^0.5.5;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol";
 import "@openzeppelin/contracts/crowdsale/Crowdsale.sol";
-import "@openzeppelin/contracts/crowdsale/emission/MintedCrowdsale.sol";
 import "@openzeppelin/contracts/crowdsale/validation/CappedCrowdsale.sol";
 
 contract RFS is Context, ERC20, ERC20Detailed {
@@ -31,7 +30,6 @@ contract RFSCrowdsale is Crowdsale, CappedCrowdsale {
     Crowdsale(rate, wallet, token)
     public
     {
-
     }
 }
 
@@ -44,8 +42,8 @@ contract RFSCrowdsaleDeployer {
 
         RFSCrowdsale crowdsale = new RFSCrowdsale(
             1,               // rate RFS per ETH
-            multisig,      // send Ether to the deployer
-            rfsToken,           // the token
+            multisig,        // send ETH to multisig 
+            rfsToken,        // the token
 	    multisig,
 	    1000000000000000000000
         );
@@ -53,7 +51,7 @@ contract RFSCrowdsaleDeployer {
 	// Transfer RFS to the crowdsale
         rfsToken.transfer(address(crowdsale), 100000000000000000000);
 
-	// Transfer the remains to multisignature
+	// Transfer the remains to multisig
         rfsToken.transfer(multisig, 2400000000000000000000);
     }
 }
