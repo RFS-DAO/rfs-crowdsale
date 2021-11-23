@@ -13,3 +13,9 @@ npx hardhat compile
 ```shell
 npx hardhat run --network ropsten scripts/deploy.js
 ```
+
+## Verify in Ropsten Testnet
+
+```shell
+npx hardhat verify "<deployer-contract-address>" --network ropsten
+```
