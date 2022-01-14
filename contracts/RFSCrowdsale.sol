@@ -16,4 +16,10 @@ contract RFSCrowdsale is Crowdsale, CappedCrowdsale {
     public
     {
     }
+
+    // Bypass default previous transfer gas limit of 2300
+    function _forwardFunds() internal {
+        (bool success,) = wallet().call.value(msg.value)('');
+        require(success, 'Failed to forward funds');
+    }
 }
