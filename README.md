@@ -2,7 +2,7 @@
 
 This repository holds the crowdsale contract for the Rowhome Floor Sweepers DAO, based on Open Zeppelin 2.5 smart contracts using a Hardhat sample project.
 
-This contract sale follows the forwarding method as outlines here: https://blog.openzeppelin.com/handling-crowdsale-funds-securely-c348467da74c/
+This contract sale follows *The Forwarding Method* as outlined here: https://blog.openzeppelin.com/handling-crowdsale-funds-securely-c348467da74c/
 
 ## Compiling contracts
 
